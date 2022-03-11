@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
 import pe.gob.indecopi.service.ClsBusquedaServiceI;
 import pe.gob.indecopi.service.ClsConfiguracionServiceI;
 
@@ -38,6 +39,12 @@ public class ClsBusquedaController implements Serializable{
 	public @ResponseBody ResponseEntity<?> doLstCertificado(@RequestBody ClsFiltroConsCertBean objFiltro ) {
 			logger.info("doLstCertificado()");
 		return ResponseEntity.ok().body(objConnService.doLstCertificado(objFiltro));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/exprelacionado", consumes = "application/json",  produces = "application/json")
+	public @ResponseBody ResponseEntity<?> doLstExpRelacionado(@RequestBody ClsFiltroExpRelBean objFiltro ) {
+			logger.info("doLstCertificado()");
+		return ResponseEntity.ok().body(objConnService.doLstExpRelacionado(objFiltro));
 	}
 
 }

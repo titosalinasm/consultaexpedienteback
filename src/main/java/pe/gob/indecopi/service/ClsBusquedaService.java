@@ -12,13 +12,16 @@ import com.google.gson.Gson;
 import pe.gob.indecopi.bean.chatbot.ClsInputRenovacionBean;
 import pe.gob.indecopi.bean.chatbot.ClsRespuestaRenovacionBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsTipoSolicitudBean;
 import pe.gob.indecopi.repository.ClsBusquedaRepositoryI;
 import pe.gob.indecopi.repository.ClsChatBotRepositoryI;
 import pe.gob.indecopi.repository.ClsConfiguracionRepositoryI;
 import pe.gob.indecopi.result.ClsCertificadoResult;
 import pe.gob.indecopi.result.ClsConfiguracionResult;
+import pe.gob.indecopi.result.ClsExpRelResult;
 import pe.gob.indecopi.result.ClsRenovacionChaBotResult;
 import pe.gob.indecopi.util.ClsResultDAO;
 
@@ -51,6 +54,32 @@ public class ClsBusquedaService implements Serializable, ClsBusquedaServiceI {
 			objResultDAO=objConn.doBuscarCertificado(objFiltro);
 			
 			objResult.setLstCertificado((List<ClsRespuestaCertBean>)objResultDAO.get("POUT_CUR_CERTIFICADO"));
+			
+			objResult.setNuError(new Long(Integer.parseInt(objResultDAO.get("POUT_NU_ERROR")+"")));
+			objResult.setVcError((String)objResultDAO.get("POUT_VC_ERROR"));
+
+
+		}catch(Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+			logger.info(e);
+		}
+		
+		return objResult;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ClsExpRelResult doLstExpRelacionado(ClsFiltroExpRelBean objFiltro) {
+		//logger.info("doConsultaTerminos(filro) => "+objFiltroTerminos.getVcUsuario());
+
+		ClsExpRelResult objResult=new ClsExpRelResult();
+		try {
+
+			objResultDAO=objConn.doExpedienteRel(objFiltro);
+			
+			objResult.setLstExpRelacionado((List<ClsRespuestaExpRelBean>)objResultDAO.get("POUT_CUR_EXPEDIENTE"));
 			
 			objResult.setNuError(new Long(Integer.parseInt(objResultDAO.get("POUT_NU_ERROR")+"")));
 			objResult.setVcError((String)objResultDAO.get("POUT_VC_ERROR"));

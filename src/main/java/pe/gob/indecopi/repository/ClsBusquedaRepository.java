@@ -30,7 +30,9 @@ import oracle.jdbc.OracleTypes;
 import pe.gob.indecopi.bean.chatbot.ClsInputRenovacionBean;
 import pe.gob.indecopi.bean.chatbot.ClsRespuestaRenovacionBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsTipoSolicitudBean;
 import pe.gob.indecopi.param.ClsConstantes;
 import pe.gob.indecopi.util.ClsResultDAO;
@@ -90,6 +92,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											objRespuesta.setVcCertOrigenDiv(rs.getString("VC_CERT_ORI_DIV"));
 											objRespuesta.setVcCertRelDiv(rs.getString("VC_CER_REL_DIV"));
 											objRespuesta.setNuFlagPeriodoRen(rs.getInt("NU_PER_RENOVACION"));
+											objRespuesta.setNuAnioRegistro(rs.getInt("ANIO_REGISTRO"));
+											objRespuesta.setVcLogo(rs.getString("VC_LOGO"));
 											
 											return objRespuesta;
 										}
@@ -100,11 +104,61 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 			
 			Map<String, Object> inParamMap = new HashMap();
 			inParamMap.put("PIN_VC_CERTIFICADO", objFiltro.getVcNroCertificado());
+			inParamMap.put("PIN_VC_TIPO_SOLICITUD", objFiltro.getVcTipoSolicitud());
 			//execute
 			Map<String, Object> out = this.simpleJdbcCall.execute(inParamMap);
 			
 			//response
 			objResultDAO.put("POUT_CUR_CERTIFICADO", out.get("POUT_CUR_CERTIFICADO"));
+			objResultDAO.put("POUT_NU_ERROR", out.get("POUT_NU_ERROR"));
+			objResultDAO.put("POUT_VC_ERROR", out.get("POUT_VC_ERROR"));
+											    		
+			
+		}catch(Exception e) {
+			System.out.println(e);
+			logger.info(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return objResultDAO;
+	}
+	
+	@Override
+	public ClsResultDAO doExpedienteRel(ClsFiltroExpRelBean objFiltro) {
+		try {
+			//procedure
+			this.simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate)
+									.withSchemaName(ClsConstantes.SCHEMA_USR_EXPCONS)
+									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
+									.withProcedureName(ClsConstantes.SP_LST_EXPEDIENTE_RELA)
+									.declareParameters(
+									new  SqlOutParameter("POUT_CUR_EXPEDIENTE", OracleTypes.CURSOR ,
+									new RowMapper<ClsRespuestaExpRelBean>() {
+
+										@Override
+										public ClsRespuestaExpRelBean mapRow(ResultSet rs, int rowNum)
+												throws SQLException {
+											ClsRespuestaExpRelBean objRespuesta=new ClsRespuestaExpRelBean();
+											objRespuesta.setVcIdExpediente(rs.getString("ID_EXPEDIENTE"));
+											objRespuesta.setNuAnioExpediente(rs.getInt("ANIO_EXPEDIENTE"));
+											objRespuesta.setVcTipoExpediente(rs.getString("TIPO_EXPEDIENTE"));
+											objRespuesta.setVcFechaPresentacion(rs.getString("FECHA_PRESENTACION"));
+											objRespuesta.setVcClase(rs.getString("ID_CLASE"));
+											return objRespuesta;
+										}
+									}),
+									new  SqlOutParameter("POUT_NU_ERROR", OracleTypes.NUMBER ,"NUMBER"),
+									new  SqlOutParameter("POUT_VC_ERROR", OracleTypes.VARCHAR ,"VARCHAR2")
+									);
+			
+			Map<String, Object> inParamMap = new HashMap();
+			inParamMap.put("PIN_VC_CERTIFICADO", objFiltro.getVcNroCertificado());
+			inParamMap.put("PIN_NU_ANIO", objFiltro.getNuAnioRegistro());
+			//execute
+			Map<String, Object> out = this.simpleJdbcCall.execute(inParamMap);
+			
+			//response
+			objResultDAO.put("POUT_CUR_EXPEDIENTE", out.get("POUT_CUR_EXPEDIENTE"));
 			objResultDAO.put("POUT_NU_ERROR", out.get("POUT_NU_ERROR"));
 			objResultDAO.put("POUT_VC_ERROR", out.get("POUT_VC_ERROR"));
 											    		

@@ -20,7 +20,22 @@ public class ClsRespuestaCertBean implements Serializable{
 	private String vcCertOrigenDiv;
 	private String vcCertRelDiv;
 	private Integer nuFlagPeriodoRen;
+	private Integer nuAnioRegistro;
+	private String vcLogo;
 	
+	
+	public String getVcLogo() {
+		return vcLogo;
+	}
+	public void setVcLogo(String vcLogo) {
+		this.vcLogo = vcLogo;
+	}
+	public Integer getNuAnioRegistro() {
+		return nuAnioRegistro;
+	}
+	public void setNuAnioRegistro(Integer nuAnioRegistro) {
+		this.nuAnioRegistro = nuAnioRegistro;
+	}
 	public String getVcNroCertificado() {
 		return vcNroCertificado;
 	}
