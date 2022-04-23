@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroDetalleExpBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpedienteBean;
 import pe.gob.indecopi.service.ClsBusquedaServiceI;
 import pe.gob.indecopi.service.ClsConfiguracionServiceI;
 
@@ -43,8 +45,20 @@ public class ClsBusquedaController implements Serializable{
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/exprelacionado", consumes = "application/json",  produces = "application/json")
 	public @ResponseBody ResponseEntity<?> doLstExpRelacionado(@RequestBody ClsFiltroExpRelBean objFiltro ) {
-			logger.info("doLstCertificado()");
+			logger.info("doLstExpRelacionado()");
 		return ResponseEntity.ok().body(objConnService.doLstExpRelacionado(objFiltro));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/expediente", consumes = "application/json",  produces = "application/json")
+	public @ResponseBody ResponseEntity<?> doLstExpediente(@RequestBody ClsFiltroExpedienteBean objFiltro ) {
+			logger.info("doLstExpediente()");
+		return ResponseEntity.ok().body(objConnService.doBuscarExpediente(objFiltro));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/detalleexpediente", consumes = "application/json",  produces = "application/json")
+	public @ResponseBody ResponseEntity<?> doLstExpedienteDetalle(@RequestBody ClsFiltroDetalleExpBean objFiltro ) {
+			logger.info("doLstExpedienteDetalle()");
+		return ResponseEntity.ok().body(objConnService.doBuscarDetalleExpediente(objFiltro));
 	}
 
 }

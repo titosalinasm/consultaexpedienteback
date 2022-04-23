@@ -22,8 +22,15 @@ public class ClsRespuestaCertBean implements Serializable{
 	private Integer nuFlagPeriodoRen;
 	private Integer nuAnioRegistro;
 	private String vcLogo;
+	private String vcIdTipoSolicitud;
 	
 	
+	public String getVcIdTipoSolicitud() {
+		return vcIdTipoSolicitud;
+	}
+	public void setVcIdTipoSolicitud(String vcIdTipoSolicitud) {
+		this.vcIdTipoSolicitud = vcIdTipoSolicitud;
+	}
 	public String getVcLogo() {
 		return vcLogo;
 	}

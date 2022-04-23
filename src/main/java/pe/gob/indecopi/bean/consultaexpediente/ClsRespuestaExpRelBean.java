@@ -14,7 +14,16 @@ public class ClsRespuestaExpRelBean implements Serializable{
 	private String vcTipoExpediente;
 	private String vcFechaPresentacion;
 	private String vcClase;
+	private Integer nuEstado;
 	
+	
+	
+	public Integer getNuEstado() {
+		return nuEstado;
+	}
+	public void setNuEstado(Integer nuEstado) {
+		this.nuEstado = nuEstado;
+	}
 	public String getVcIdExpediente() {
 		return vcIdExpediente;
 	}
