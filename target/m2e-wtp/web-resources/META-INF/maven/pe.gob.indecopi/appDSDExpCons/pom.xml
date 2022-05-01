@@ -218,6 +218,16 @@
 		<artifactId>javaee-api</artifactId>
 		<version>7.0</version>
 	</dependency>
+	
+	<!-- CMIS -->
+	<dependency>
+			<groupId>pe.gob.indecopi</groupId>
+			<artifactId>libComponentesCMIS</artifactId>
+			<classifier>classes</classifier>
+			<version>1.0.0.0</version>
+			<scope>provided</scope>
+    </dependency>
+	
 
 	</dependencies>
 

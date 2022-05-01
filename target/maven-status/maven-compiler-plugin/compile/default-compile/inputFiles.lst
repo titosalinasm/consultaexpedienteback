@@ -11,15 +11,18 @@ D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\C
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\consultaexpediente\ClsFiltroDetalleExpBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\controller\ClsConfiguracionController.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\ClsBusquedaRepositoryI.java
+D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\service\ClsCemisSrv.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ClsConfigFilePath.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\result\ClsRenovacionChaBotResult.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\exception\ClsException.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\result\ClsCertificadoResult.java
+D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\ClsAlfrescoRepository.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\ClsConfiguracionRepositoryI.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ClsMediaTypeUtils.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\config\ClsDevConfigDataSourse.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ClsErrorResult.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ApiError.java
+D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\consultaexpediente\ClsFiltroExpAlfrascoBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ClsRestExceptionHandler.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\config\ClsLocalConfigDataSourse.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\result\ClsConfiguracionResult.java
@@ -30,6 +33,7 @@ D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\exception\Cl
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\consultaexpediente\ClsRespuestaExpRelBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\util\ClsEntityNotFoundException.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\controller\ClsChatBotController.java
+D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\ClsAlfrescoRepositoryI.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\result\ClsExpRelResult.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\service\ClsBusquedaService.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\main\AppRegMarcas.java
@@ -51,6 +55,7 @@ D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\config\ClsPr
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\chatbot\ClsInputRenovacionBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\consultaexpediente\ClsTipoSolicitudBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\repository\ClsConfiguracionRepository.java
+D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\service\ClsCemisSrvI.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\chatbot\ClsInputRegistroBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\chatbot\ClsRespuestaRenovacionBean.java
 D:\2022\INDECOPI\SPRING\appDSDExpCons\src\main\java\pe\gob\indecopi\bean\consultaexpediente\ClsSeguimientoBean.java

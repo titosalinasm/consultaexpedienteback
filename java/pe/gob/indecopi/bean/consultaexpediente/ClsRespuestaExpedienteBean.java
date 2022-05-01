@@ -1,6 +1,8 @@
 package pe.gob.indecopi.bean.consultaexpediente;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClsRespuestaExpedienteBean implements Serializable{
 
@@ -27,14 +29,28 @@ public class ClsRespuestaExpedienteBean implements Serializable{
 	private String vcFechaPublicacion;
 	private String vcSentidoResolucion;
 	
+	private List<ClsResolucionBean> lstResolucion;
 	
+	public ClsRespuestaExpedienteBean() {
+		this.setLstResolucion(new ArrayList<ClsResolucionBean>());
+	}
 	
 	public Integer getNuProcedimiento() {
 		return nuProcedimiento;
 	}
+
 	public void setNuProcedimiento(Integer nuProcedimiento) {
 		this.nuProcedimiento = nuProcedimiento;
 	}
+	
+	public List<ClsResolucionBean> getLstResolucion() {
+		return lstResolucion;
+	}
+
+	public void setLstResolucion(List<ClsResolucionBean> lstResolucion) {
+		this.lstResolucion = lstResolucion;
+	}
+
 	public String getVcProcedimiento() {
 		return vcProcedimiento;
 	}

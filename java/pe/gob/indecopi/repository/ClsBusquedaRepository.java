@@ -207,7 +207,7 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											objRespuesta.setVcProcedimiento(rs.getString("VC_PROCEDIMIENTO"));
 											//objRespuesta.setNuEstado(rs.getInt("NU_ESTADO"));
 											//objRespuesta.setVcSentidoResolucion((rs.getString("VC_SENTIDO")));
-											
+											logger.info("VC_ESTADO_EXPEDIENTE: "+rs.getString("VC_ESTADO_EXPEDIENTE"));
 											
 											objRespuesta.setVcLogoHito((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[0]);
 											objRespuesta.setVcLogoEstado((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[1]);

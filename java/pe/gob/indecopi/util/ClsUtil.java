@@ -27,6 +27,7 @@ import javax.sql.rowset.serial.SerialException;
 
 import java.sql.*;
 
+import org.apache.chemistry.opencmis.client.api.QueryResult;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -149,6 +150,10 @@ public class ClsUtil implements Serializable{
 			return null;
 		}
 	}
+	
+    public static String PropertyValue(QueryResult result, String propertie){
+        return  result.getPropertyValueById(propertie) != null ? result.getPropertyValueById(propertie) + "" : "";
+    }
 	
 
 }

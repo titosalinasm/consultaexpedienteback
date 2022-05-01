@@ -14,8 +14,10 @@ import pe.gob.indecopi.bean.chatbot.ClsRespuestaRenovacionBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsDetalleExpedienteBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroDetalleExpBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpAlfrascoBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpedienteBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsResolucionBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaCertBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpedienteBean;
@@ -49,6 +51,9 @@ public class ClsBusquedaService implements Serializable, ClsBusquedaServiceI {
 
 	@Autowired
 	private ClsResultDAO objResultDAO;
+	
+	@Autowired
+	private ClsCMISServiceI objConnCMIS;
 	
 	
 	@SuppressWarnings("unchecked")
@@ -115,12 +120,24 @@ public class ClsBusquedaService implements Serializable, ClsBusquedaServiceI {
 			
 			objResult.setLstExpediente((List<ClsRespuestaExpedienteBean>)objResultDAO.get("POUT_CUR_EXPEDIENTE"));
 			
+			for(int i=0; i<objResult.getLstExpediente().size(); i++) {
+				
+				ClsRespuestaExpedienteBean objExpediente=objResult.getLstExpediente().get(i);
+				ClsFiltroExpAlfrascoBean objAlfresco= new ClsFiltroExpAlfrascoBean();
+				
+				objAlfresco.setVcIdExpediente(objExpediente.getVcIdExpediente());
+				objAlfresco.setNuAnioExpediente(objExpediente.getNuAnioExpediente());
+				objAlfresco.setVcAreaExpediente(objExpediente.getVcIdAreaExpediente());
+				
+				objResult.getLstExpediente().get(i).setLstResolucion(objConnCMIS.doConsultaCMIS(objAlfresco));
+				
+			}
+			
 			objResult.setNuError(new Long(Integer.parseInt(objResultDAO.get("POUT_NU_ERROR")+"")));
 			objResult.setVcError((String)objResultDAO.get("POUT_VC_ERROR"));
 
 
 		}catch(Exception e) {
-			System.out.println(e);
 			e.printStackTrace();
 			logger.info(e);
 		}
