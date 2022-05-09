@@ -1,7 +1,5 @@
 spring.datasource.usr_expcons.jndi-name: jdbc/JDBCappDSDExpCons
-spring.datasource.usr_sel.jndi-name: jdbc/JDBCappDSDTramiteSELApi
  
-   
 spring:
   servlet:
     multipart:
@@ -10,3 +8,7 @@ spring:
       
 path-file:
    vcRutaArchivoJson: /apps/dsd/registro_marcas/solicitudes/
+   vcUsuario: consulta2
+   vcClave: consulta2
+   vcRutacmis: http://gestordoc2.indecopi.gob.pe:8080/alfresco/service/api/cmis
+   vcLinkDescarga: https://servicio.indecopi.gob.pe/buscadorResoluciones/getDoc?docID=

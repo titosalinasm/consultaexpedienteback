@@ -41,192 +41,30 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- dependency>
+		<dependency>
 			<groupId>pe.gob.indecopi</groupId>
 			<artifactId>libComponentesSpring</artifactId>
 			<classifier>classes</classifier>
 			<version>1.1.0.0</version>
 			<scope>provided</scope>
-		</dependency-->
-
-	<dependency>
-		<groupId>pe.gob.indecopi</groupId>
-		<artifactId>libComponentesMVN</artifactId>
-		<version>1.0.0.2</version>
-		<classifier>classes</classifier>
-		<scope>provided</scope>
-	</dependency>
-
-<!-- despendencias de spring reemplazar por libComponentSpring -->
-
-	<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
-		</dependency>
-			<dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-	    </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		
-		<!-- dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-			<version>2.0.6.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-jwt</artifactId>
-			<version>1.0.10.RELEASE</version>
-		</dependency-->
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.coobird</groupId>
-			<artifactId>thumbnailator</artifactId>
-			<version>0.4.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.slugify</groupId>
-			<artifactId>slugify</artifactId>
-			<version>2.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-joda</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-csv</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-validator</groupId>
-			<artifactId>commons-validator</artifactId>
-			<version>1.6</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.cache</groupId>
-			<artifactId>cache-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc7</artifactId>
-		    <version>12.1.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-oracle</artifactId>
-			<version>1.2.1.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-	 		<!--CODE -->
-	<dependency>
-		<groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<version>1.16.22</version><!--$NO-MVN-MAN-VER$-->
-	</dependency>
-
-	<!--AUX TOOLS -->
-	<dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-lang3</artifactId>
-		<version>3.5</version><!--$NO-MVN-MAN-VER$ -->
-	</dependency>
-	<!--SWAGGER2 -->
-	<dependency>
-		<groupId>io.springfox</groupId>
-		<artifactId>springfox-swagger2</artifactId>
-		<version>2.9.2</version>
-	</dependency>
-
-	<dependency>
-		<groupId>io.jsonwebtoken</groupId>
-		<artifactId>jjwt</artifactId>
-		<version>0.9.1</version>
-	</dependency>
-
-	<dependency>
-		<groupId>com.google.code.gson</groupId>
-		<artifactId>gson</artifactId>
-		<version>2.8.5</version>
-	</dependency>
-
-	<dependency>
-		<groupId>javax</groupId>
-		<artifactId>javaee-api</artifactId>
-		<version>7.0</version>
-	</dependency>
-	
-	<!-- CMIS -->
-	<dependency>
 			<groupId>pe.gob.indecopi</groupId>
-			<artifactId>libComponentesCMIS</artifactId>
+			<artifactId>libComponentesESAPI</artifactId>
 			<classifier>classes</classifier>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
-    </dependency>
+		</dependency>
+		
+		<!-- CMIS -->
+		<dependency>
+				<groupId>pe.gob.indecopi</groupId>
+				<artifactId>libComponentesCMIS</artifactId>
+				<classifier>classes</classifier>
+				<version>1.0.0.0</version>
+				<scope>provided</scope>
+	    </dependency>
 	
 
 	</dependencies>
@@ -262,7 +100,7 @@
 					<archive>
 					<compress>true</compress>
 						<manifestEntries>
-							<WebLogic-Application-Version>${project.version}.1_f${build.time}</WebLogic-Application-Version>
+							<WebLogic-Application-Version>${project.version}.1_20_f${build.time}</WebLogic-Application-Version>
 							<Implementation-Build>${buildNumber}</Implementation-Build>
 							<SCM-Revision>${buildNumber}</SCM-Revision>
 						</manifestEntries>
@@ -275,7 +113,7 @@
 			</plugin>
 
 			<!-- Plugin para firmar los artefactos -->
-			<!-- plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jarsigner-plugin</artifactId>
 				<version>1.4</version>
@@ -294,9 +132,9 @@
 					<storepass>${keystore.password}</storepass>
 					<keypass>${cert.password}</keypass>
 				</configuration>
-			</plugin-->
+			</plugin>
 
-			<!-- plugin>
+			<!--plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 				<version>1.4</version>
@@ -312,12 +150,12 @@
 				<doCheck>false</doCheck>
 				<doUpdate>false</doUpdate>
 				</configuration>
-			</plugin-->
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-			</plugin>
+			</plugin-->
 			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -344,7 +182,7 @@
 		</plugins>
 	</build>
 	<profiles>
-			<profile>
+		<profile>
 			<id>local</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -355,8 +193,8 @@
 			</activation>
 			<properties>
 				<LOG_LEVEL>DEBUG</LOG_LEVEL>
-				<RUTA_LOGS>D:\\\\apps\\logs\\appDSDRegMarcas\\</RUTA_LOGS>
-				<NOMBRE_LOGS>appDSDRegMarcas.log</NOMBRE_LOGS>
+				<RUTA_LOGS>D:\\\\apps\\logs\\appDSDExpCons\\</RUTA_LOGS>
+				<NOMBRE_LOGS>appDSDExpCons.log</NOMBRE_LOGS>
 				<CONSOLE_ENABLE>DEBUG</CONSOLE_ENABLE>
 				<ACTIVED_PROPERTIES>local</ACTIVED_PROPERTIES>
 			</properties>
@@ -371,8 +209,8 @@
 			</activation>
 			<properties>
 				<LOG_LEVEL>DEBUG</LOG_LEVEL>
-				<RUTA_LOGS>/apps/logs/appDSDRegMarcas/</RUTA_LOGS>
-				<NOMBRE_LOGS>appDSDRegMarcas</NOMBRE_LOGS>
+				<RUTA_LOGS>/apps/logs/appDSDExpCons/</RUTA_LOGS>
+				<NOMBRE_LOGS>appDSDExpCons.log</NOMBRE_LOGS>
 				<CONSOLE_ENABLE>DEBUG</CONSOLE_ENABLE>
 				<ACTIVED_PROPERTIES>dev</ACTIVED_PROPERTIES>
 			</properties>
@@ -388,7 +226,7 @@
 			<properties>
 				<LOG_LEVEL>DEBUG</LOG_LEVEL>
 				<RUTA_LOGS>/apps/logs/appDSDRegMarcas/</RUTA_LOGS>
-				<NOMBRE_LOGS>appDSDRegMarcas</NOMBRE_LOGS>
+				<NOMBRE_LOGS>appDSDRegMarcas.log</NOMBRE_LOGS>
 				<CONSOLE_ENABLE>DEBUG</CONSOLE_ENABLE>
 				<ACTIVED_PROPERTIES>qa</ACTIVED_PROPERTIES>
 			</properties>
@@ -404,7 +242,7 @@
 			<properties>
 				<LOG_LEVEL>INFO</LOG_LEVEL>
 				<RUTA_LOGS>/apps/logs/appDSDRegMarcas/</RUTA_LOGS>
-				<NOMBRE_LOGS>appDSDRegMarcas</NOMBRE_LOGS>
+				<NOMBRE_LOGS>appDSDExpCons.log</NOMBRE_LOGS>
 				<ACTIVED_PROPERTIES>prd</ACTIVED_PROPERTIES>
 				<CONSOLE_ENABLE>OFF</CONSOLE_ENABLE>
 			</properties>
@@ -413,8 +251,8 @@
 
 	<!-- Repositorio de fuentes -->
 	<scm>
-		<connection>scm:svn:http://appfuentes.indecopi.gob.pe/svnRepo/dsdvirtual/Registro de marcas Back/</connection>
-		<url>http://appfuentes.indecopi.gob.pe/svnRepo/dsdvirtual/Registro de marcas Back</url>
+		<connection>scm:svn:http://appfuentes.indecopi.gob.pe/svnRepo/svnRepoDSDConsultas/appDSDExpConsBack/</connection>
+		<url>http://appfuentes.indecopi.gob.pe/svnRepo/svnRepoDSDConsultas/appDSDExpConsBack</url>
 	</scm>
 
 	<!-- Repositorio de artefactos -->

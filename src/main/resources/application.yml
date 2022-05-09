@@ -1,13 +1,14 @@
 server:
     servlet:
-      context-path: /appDSDRegMarcasApi
+      context-path: /appDSDExpConsApi
       session:
-        timeout: 300
+        timeout: 6000
 
 spring: 
   profiles:
       active: '@ACTIVED_PROPERTIES@'
-  banner:    location: classpath:/conf/banner.txt
+  banner:
+    location: classpath:/conf/banner.txt
       
     
 logging:

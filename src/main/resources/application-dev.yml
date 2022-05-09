@@ -1,7 +1,5 @@
 spring.datasource.usr_expcons.jndi-name: jdbc/JDBCappDSDExpCons
-spring.datasource.usr_sel.jndi-name: jdbc/JDBCappDSDTramiteSELApi
  
-   
 spring:
   servlet:
     multipart:
