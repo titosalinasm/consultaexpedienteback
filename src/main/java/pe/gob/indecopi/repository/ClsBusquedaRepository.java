@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -34,6 +35,9 @@ import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroConsCertBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroDetalleExpBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroExpedienteBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsFiltroLemaBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsLemaBean;
+import pe.gob.indecopi.bean.consultaexpediente.ClsLogoFiltroBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaCertBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpRelBean;
 import pe.gob.indecopi.bean.consultaexpediente.ClsRespuestaExpedienteBean;
@@ -80,6 +84,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
 									.withProcedureName(ClsConstantes.SP_LST_CONSUL_POR_CERTIFICADO)
 									.declareParameters(
+									new  SqlParameter("PIN_VC_CERTIFICADO", OracleTypes.VARCHAR ,"VARCHAR2"),
+									new  SqlParameter("PIN_VC_TIPO_SOLICITUD", OracleTypes.VARCHAR ,"VARCHAR2"),
 									new  SqlOutParameter("POUT_CUR_CERTIFICADO", OracleTypes.CURSOR ,
 									new RowMapper<ClsRespuestaCertBean>() {
 
@@ -87,6 +93,11 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 										public ClsRespuestaCertBean mapRow(ResultSet rs, int rowNum)
 												throws SQLException {
 											ClsRespuestaCertBean objRespuesta=new ClsRespuestaCertBean();
+											//objRespuesta.setNuIdRegistro(rs.getInt("ID_REGISTRO"));
+											objRespuesta.setNuAnioRegistro(rs.getInt("ANIO_REGISTRO"));
+											//objRespuesta.setVcIdAreaRegistro(rs.getString("ID_AREA_REGISTRO"));
+											//objRespuesta.setVcLogo(rs.getString("VC_LOGO"));
+											
 											objRespuesta.setVcNroCertificado(rs.getString("NRO_CERTIFICADO"));
 											objRespuesta.setVcDenominacion(rs.getString("DENOMINACION"));
 											objRespuesta.setVcTipoSolicitud(rs.getString("TIPO_SOLICITUD"));
@@ -95,11 +106,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											objRespuesta.setVcTitulares(rs.getString("VC_TITULARES"));
 											objRespuesta.setVcEstado(rs.getString("VC_ESTADO"));
 											objRespuesta.setVcDescEstado(rs.getString("VC_DESC_ESTADO"));
-											objRespuesta.setVcCertOrigenDiv(rs.getString("VC_CERT_ORI_DIV"));
-											objRespuesta.setVcCertRelDiv(rs.getString("VC_CER_REL_DIV"));
+											objRespuesta.setVcDivRecla(rs.getString("VC_DIVICION_RECLA"));
 											objRespuesta.setNuFlagPeriodoRen(rs.getInt("NU_PER_RENOVACION"));
-											objRespuesta.setNuAnioRegistro(rs.getInt("ANIO_REGISTRO"));
-											objRespuesta.setVcLogo(rs.getString("VC_LOGO"));
 											objRespuesta.setVcIdTipoSolicitud(rs.getString("VC_ID_TIPO_SOL"));
 											return objRespuesta;
 										}
@@ -109,6 +117,7 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									);
 			
 			Map<String, Object> inParamMap = new HashMap();
+
 			inParamMap.put("PIN_VC_CERTIFICADO", objFiltro.getVcNroCertificado());
 			inParamMap.put("PIN_VC_TIPO_SOLICITUD", objFiltro.getVcTipoSolicitud());
 			//execute
@@ -130,6 +139,84 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 	}
 	
 	@Override
+	public ClsResultDAO doLemaAsociado(ClsFiltroLemaBean objFiltro) {
+		try {
+			//procedure
+			this.simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate)
+									.withSchemaName(ClsConstantes.SCHEMA_USR_EXPCONS)
+									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
+									.withProcedureName(ClsConstantes.SP_LST_LEMAS)
+									.declareParameters(
+											new  SqlParameter("PIN_VC_NRO_CERTIFICADO", OracleTypes.VARCHAR ,"VARCHAR2"),
+											new  SqlParameter("PIN_NU_ANIO_REGISTRO", OracleTypes.NUMBER ,"NUMBER"),
+									new  SqlOutParameter("POUT_CUR_LEMAS", OracleTypes.CURSOR ,
+									new RowMapper<ClsLemaBean>() {
+										@Override
+										public ClsLemaBean mapRow(ResultSet rs, int rowNum)
+												throws SQLException {
+											ClsLemaBean objRespuesta=new ClsLemaBean();
+											objRespuesta.setVcIdClase(rs.getString("ID_CLASE"));
+											objRespuesta.setVcNroCertificado(rs.getString("NRO_CERTIFICADO"));
+											objRespuesta.setVcFechaExpiracion(rs.getString("FECHA_EXPIRACION"));
+											objRespuesta.setVcFrase(rs.getString("FRASE"));
+											objRespuesta.setVcVigencia(rs.getString("vigencia"));
+											return objRespuesta;
+										}
+									})
+									);
+			
+			Map<String, Object> inParamMap = new HashMap();
+			
+			inParamMap.put("PIN_VC_NRO_CERTIFICADO", objFiltro.getVcNroCertificado());
+			inParamMap.put("PIN_NU_ANIO_REGISTRO", objFiltro.getNuAnioRegistro());
+			//execute
+			Map<String, Object> out = this.simpleJdbcCall.execute(inParamMap);
+			
+			//response
+			objResultDAO.put("POUT_CUR_LEMAS", out.get("POUT_CUR_LEMAS"));
+											    		
+			
+		}catch(Exception e) {
+			System.out.println(e);
+			logger.info(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return objResultDAO;
+	}
+	
+	@Override
+	public ClsResultDAO doLogo(ClsLogoFiltroBean objFiltro) {
+		try {
+			//procedure
+			this.simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate)
+									.withSchemaName(ClsConstantes.SCHEMA_USR_EXPCONS)
+									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
+									.withProcedureName(ClsConstantes.SP_GET_FORM_RUTA_IMA)
+									.declareParameters(
+									new  SqlOutParameter("POUT_VC_LOGO", OracleTypes.VARCHAR ,"VARCHAR2")
+									);
+			
+			Map<String, Object> inParamMap = new HashMap();
+			inParamMap.put("PIN_VC_NRO_CERTIFICADO", objFiltro.getVcNroCertificado());
+			inParamMap.put("PIN_NU_ANIO_REGISTRO", objFiltro.getNuAnioRegistro());
+			//execute
+			Map<String, Object> out = this.simpleJdbcCall.execute(inParamMap);
+			
+			//response
+			objResultDAO.put("POUT_VC_LOGO", out.get("POUT_VC_LOGO"));
+											    		
+			
+		}catch(Exception e) {
+			System.out.println(e);
+			logger.info(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return objResultDAO;
+	}
+	
+	@Override
 	public ClsResultDAO doExpedienteRel(ClsFiltroExpRelBean objFiltro) {
 		try {
 			//procedure
@@ -138,6 +225,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
 									.withProcedureName(ClsConstantes.SP_LST_EXPEDIENTE_RELA)
 									.declareParameters(
+											new  SqlParameter("PIN_VC_CERTIFICADO", OracleTypes.VARCHAR ,"VARCHAR2"),
+											new  SqlParameter("PIN_NU_ANIO", OracleTypes.NUMBER ,"NUMBER"),
 									new  SqlOutParameter("POUT_CUR_EXPEDIENTE", OracleTypes.CURSOR ,
 									new RowMapper<ClsRespuestaExpedienteBean>() {
 
@@ -158,13 +247,15 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											//objRespuesta.setNuEstado(rs.getInt("NU_ESTADO"));
 											//objRespuesta.setVcSentidoResolucion((rs.getString("VC_SENTIDO")));
 											logger.info("VC_ESTADO_EXPEDIENTE: "+rs.getString("VC_ESTADO_EXPEDIENTE"));
-											
+											if(rs.getString("VC_ESTADO_EXPEDIENTE")!=null) {
 											objRespuesta.setVcLogoHito((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[0]);
 											objRespuesta.setVcLogoEstado((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[1]);
 											objRespuesta.setVcLink((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[2]);
 											objRespuesta.setVcDescEstado((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[3]);
 											objRespuesta.setVcFechaPublicacion((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[4]);
 											objRespuesta.setVcSentidoResolucion((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[5]);
+											}
+											
 											return objRespuesta;
 										}
 									}),
@@ -173,6 +264,7 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									);
 			
 			Map<String, Object> inParamMap = new HashMap();
+
 			inParamMap.put("PIN_VC_CERTIFICADO", objFiltro.getVcNroCertificado());
 			inParamMap.put("PIN_NU_ANIO", objFiltro.getNuAnioRegistro());
 			//execute
@@ -202,6 +294,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
 									.withProcedureName(ClsConstantes.SP_LST_CONSUL_POR_EXPEDIENTE)
 									.declareParameters(
+									new  SqlParameter("PIN_VC_EXPEDIENTE", OracleTypes.VARCHAR ,"VARCHAR2"),
+									new  SqlParameter("PIN_NU_ANIO_EXPEDIENTE", OracleTypes.NUMBER ,"NUMBER"),	
 									new  SqlOutParameter("POUT_CUR_EXPEDIENTE", OracleTypes.CURSOR ,
 									new RowMapper<ClsRespuestaExpedienteBean>() {
 
@@ -222,14 +316,14 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											//objRespuesta.setNuEstado(rs.getInt("NU_ESTADO"));
 											//objRespuesta.setVcSentidoResolucion((rs.getString("VC_SENTIDO")));
 											logger.info("VC_ESTADO_EXPEDIENTE: "+rs.getString("VC_ESTADO_EXPEDIENTE"));
-											
+											if(rs.getString("VC_ESTADO_EXPEDIENTE")!=null) {
 											objRespuesta.setVcLogoHito((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[0]);
 											objRespuesta.setVcLogoEstado((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[1]);
 											objRespuesta.setVcLink((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[2]);
 											objRespuesta.setVcDescEstado((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[3]);
 											objRespuesta.setVcFechaPublicacion((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[4]);
 											objRespuesta.setVcSentidoResolucion((rs.getString("VC_ESTADO_EXPEDIENTE")).split("=")[5]);
-											
+											}
 											return objRespuesta;
 										}
 									}),
@@ -239,6 +333,7 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 			
 			Map<String, Object> inParamMap = new HashMap();
 			inParamMap.put("PIN_VC_EXPEDIENTE", objFiltro.getVcNroExpediente());
+			inParamMap.put("PIN_NU_ANIO_EXPEDIENTE", objFiltro.getNuAnioExpediente());
 			logger.info("EXPEDIENTE: "+objFiltro.getVcNroExpediente());
 			//execute
 			Map<String, Object> out = this.simpleJdbcCall.execute(inParamMap);
@@ -267,6 +362,10 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									.withCatalogName(ClsConstantes.PKG_CONSULTA_EXPEDIENTE)
 									.withProcedureName(ClsConstantes.SP_LST_DETALLE_EXPEDIENTE)
 									.declareParameters(
+											new  SqlParameter("PIN_VC_ID_EXPEDIENTE", OracleTypes.VARCHAR ,"VARCHAR2"),
+											new  SqlParameter("PIN_NU_ANIO_EXPEDIENTE", OracleTypes.NUMBER ,"NUMBER"),
+											new  SqlParameter("PIN_VC_ID_AREA", OracleTypes.VARCHAR ,"VARCHAR2"),
+											new  SqlParameter("PIN_VC_ID_TIPO_EXP", OracleTypes.VARCHAR ,"VARCHAR2"),
 									new  SqlOutParameter("POUT_CUR_DATOS_EXP", OracleTypes.CURSOR ,
 									new RowMapper<ClsDetalleExpedienteBean>() {
 
@@ -274,10 +373,11 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 										public ClsDetalleExpedienteBean mapRow(ResultSet rs, int rowNum)
 												throws SQLException {
 											ClsDetalleExpedienteBean objRespuesta=new ClsDetalleExpedienteBean();
-											objRespuesta.setNuAnioExpediente(rs.getString("NU_ANIO_EXPEDIENTE"));
+											objRespuesta.setNuAnioExpediente(rs.getInt("NU_ANIO_EXPEDIENTE"));
 											objRespuesta.setVcIdAreaExpediente(rs.getString("VC_ID_AREA_EXPEDIENTE"));
 											objRespuesta.setVcIdExpediente(rs.getString("VC_ID_EXPEDIENTE"));
 											objRespuesta.setVcIdTipoExpediente(rs.getString("VC_ID_TIPO_EXPEDIENTE"));
+											objRespuesta.setVcIdTipExpediente(rs.getString("ID_TIPO_EXPEDIENTE"));
 											objRespuesta.setVcFechPresentacion(rs.getString("VC_FECH_PRESENTACION"));
 											objRespuesta.setVcHoraPresentacion(rs.getString("VC_HORA_PRESENTACION"));
 											objRespuesta.setVcLugar(rs.getString("VC_LUGAR"));
@@ -285,6 +385,7 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 											objRespuesta.setVcFechaAcumulacion(rs.getString("VC_FECHAACUMULACION"));
 											objRespuesta.setVcTipoAcumulacion(rs.getString("VC_TIPOACUMULACION"));
 											objRespuesta.setVcAcumuladoA(rs.getString("VC_ACUMULADOA"));
+											objRespuesta.setVcTipoActo(rs.getString("TIPO_ACTO_MODIFICATORIO"));
 											
 											objRespuesta.setVcTipoSolicitud(rs.getString("VC_TIPOSOLICITUD"));
 											objRespuesta.setVcFechaSolicitud(rs.getString("VC_FECHASOLICITUD"));
@@ -313,6 +414,8 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 												public ClsTitularesBean mapRow(ResultSet rs, int rowNum)
 														throws SQLException {
 													ClsTitularesBean objRespuesta=new ClsTitularesBean();
+													objRespuesta.setVcIdPersona(rs.getString("ID_PERSONA"));
+													objRespuesta.setVcIdRepresentado(rs.getString("ID_REPRESENTADO"));
 													objRespuesta.setVcTipoPersona(rs.getString("VC_TIPO_PERSONA"));
 													objRespuesta.setVcPersona(rs.getString("VC_PERSONA"));
 													objRespuesta.setVcTipoDocumento(rs.getString("VC_TIPO_DOCUMENTO"));
@@ -343,6 +446,9 @@ public class ClsBusquedaRepository implements Serializable, ClsBusquedaRepositor
 									);
 			
 			Map<String, Object> inParamMap = new HashMap();
+			
+
+			
 			inParamMap.put("PIN_VC_ID_EXPEDIENTE", objFiltro.getVcIdExpediente());
 			inParamMap.put("PIN_NU_ANIO_EXPEDIENTE", objFiltro.getNuAnioExpediente());
 			inParamMap.put("PIN_VC_ID_AREA", objFiltro.getVcIdAreaExpediente());

@@ -12,7 +12,7 @@ public class ClsDetalleExpedienteBean implements Serializable{
 	private static final long serialVersionUID = 1338428810060794817L;
 	
 	//Datos del expediente
-	private String nuAnioExpediente;
+	private Integer nuAnioExpediente;
 	private String vcIdAreaExpediente;
 	private String vcIdExpediente;
 	private String vcIdTipoExpediente;
@@ -23,6 +23,8 @@ public class ClsDetalleExpedienteBean implements Serializable{
 	private String vcFechaAcumulacion;
 	private String vcTipoAcumulacion;
 	private String vcAcumuladoA;
+	private String vcTipoActo;
+	private String vcIdTipExpediente;
 	//Datos la marca
 	private String vcTipoSolicitud;
 	private String vcFechaSolicitud;
@@ -43,10 +45,24 @@ public class ClsDetalleExpedienteBean implements Serializable{
 
 
 
-	public String getNuAnioExpediente() {
+	public String getVcIdTipExpediente() {
+		return vcIdTipExpediente;
+	}
+	public void setVcIdTipExpediente(String vcIdTipExpediente) {
+		this.vcIdTipExpediente = vcIdTipExpediente;
+	}
+	public String getVcTipoActo() {
+		return vcTipoActo;
+	}
+	public void setVcTipoActo(String vcTipoActo) {
+		this.vcTipoActo = vcTipoActo;
+	}
+
+
+	public Integer getNuAnioExpediente() {
 		return nuAnioExpediente;
 	}
-	public void setNuAnioExpediente(String nuAnioExpediente) {
+	public void setNuAnioExpediente(Integer nuAnioExpediente) {
 		this.nuAnioExpediente = nuAnioExpediente;
 	}
 	public String getVcIdAreaExpediente() {

@@ -9,6 +9,10 @@ public class ClsRespuestaCertBean implements Serializable{
 	 */
 	private static final long serialVersionUID = -2920726740380938023L;
 	
+	private Integer nuIdRegistro;
+	private Integer nuAnioRegistro;
+	private String vcIdAreaRegistro;
+	private String vcLogo;
 	private String vcNroCertificado;
 	private String vcDenominacion;
 	private String vcTipoSolicitud;
@@ -17,14 +21,28 @@ public class ClsRespuestaCertBean implements Serializable{
 	private String vcTitulares;
 	private String vcEstado;
 	private String vcDescEstado;
-	private String vcCertOrigenDiv;
-	private String vcCertRelDiv;
+	private String vcDivRecla;
 	private Integer nuFlagPeriodoRen;
-	private Integer nuAnioRegistro;
-	private String vcLogo;
 	private String vcIdTipoSolicitud;
 	
-	
+	public String getVcIdAreaRegistro() {
+		return vcIdAreaRegistro;
+	}
+	public void setVcIdAreaRegistro(String vcIdAreaRegistro) {
+		this.vcIdAreaRegistro = vcIdAreaRegistro;
+	}
+	public Integer getNuIdRegistro() {
+		return nuIdRegistro;
+	}
+	public void setNuIdRegistro(Integer nuIdRegistro) {
+		this.nuIdRegistro = nuIdRegistro;
+	}
+	public String getVcDivRecla() {
+		return vcDivRecla;
+	}
+	public void setVcDivRecla(String vcDivRecla) {
+		this.vcDivRecla = vcDivRecla;
+	}
 	public String getVcIdTipoSolicitud() {
 		return vcIdTipoSolicitud;
 	}
@@ -90,18 +108,6 @@ public class ClsRespuestaCertBean implements Serializable{
 	}
 	public void setVcDescEstado(String vcDescEstado) {
 		this.vcDescEstado = vcDescEstado;
-	}
-	public String getVcCertOrigenDiv() {
-		return vcCertOrigenDiv;
-	}
-	public void setVcCertOrigenDiv(String vcCertOrigenDiv) {
-		this.vcCertOrigenDiv = vcCertOrigenDiv;
-	}
-	public String getVcCertRelDiv() {
-		return vcCertRelDiv;
-	}
-	public void setVcCertRelDiv(String vcCertRelDiv) {
-		this.vcCertRelDiv = vcCertRelDiv;
 	}
 	public Integer getNuFlagPeriodoRen() {
 		return nuFlagPeriodoRen;

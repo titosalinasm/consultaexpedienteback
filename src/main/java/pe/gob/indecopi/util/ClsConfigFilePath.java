@@ -18,6 +18,7 @@ public class ClsConfigFilePath implements Serializable {
 	private String vcClave;
 	private String vcRutacmis;
     private String vcLinkDescarga;
+    private String vcRutaLogo;
     
 	
 	public ClsConfigFilePath() {
@@ -25,6 +26,12 @@ public class ClsConfigFilePath implements Serializable {
 	}
 
 	
+	public String getVcRutaLogo() {
+		return vcRutaLogo;
+	}
+	public void setVcRutaLogo(String vcRutaLogo) {
+		this.vcRutaLogo = vcRutaLogo;
+	}
 	public String getVcLinkDescarga() {
 		return vcLinkDescarga;
 	}

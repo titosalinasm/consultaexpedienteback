@@ -1,0 +1,16 @@
+server:
+    servlet:
+      context-path: /appDSDExpConsApi
+      session:
+        timeout: 6000
+
+spring: 
+  profiles:
+      active: 'local'
+  banner:
+    location: classpath:/conf/banner.txt
+      
+    
+logging:
+  config: classpath:logback.xml 
+    

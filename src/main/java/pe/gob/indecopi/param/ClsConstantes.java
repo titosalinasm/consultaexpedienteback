@@ -20,6 +20,10 @@ public class ClsConstantes implements Serializable{
 	
 	public static final String PKG_CONSULTA_EXPEDIENTE="PKG_CONSULTA_EXPEDIENTE";
 	public static final String SP_LST_CONSUL_POR_CERTIFICADO="SP_LST_CONSUL_POR_CERTIFICADO";
+	public static final String SP_LST_LEMAS="SP_LST_LEMAS";
+	public static final String SP_GET_FORM_RUTA_IMA="SP_GET_FORM_RUTA_IMA";
+	
+	
 	public static final String SP_LST_EXPEDIENTE_RELA="SP_LST_EXPEDIENTE_RELA";
 	public static final String SP_LST_CONSUL_POR_EXPEDIENTE="SP_LST_CONSUL_POR_EXPEDIENTE";
 	public static final String SP_LST_DETALLE_EXPEDIENTE="SP_LST_DETALLE_EXPEDIENTE";

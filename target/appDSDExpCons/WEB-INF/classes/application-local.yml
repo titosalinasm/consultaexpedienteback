@@ -1,0 +1,22 @@
+server: 
+      port: 8080
+      servlet: 
+              context-path: /appDSDExpConsApi
+logging: 
+      level: 
+          org: DEBUG
+     
+
+spring: 
+      datasource: 
+                url: jdbc:oracle:thin:@ind-dessis-n1-scan.indecopi.gob.pe:7575:DESA3
+                driverClassName: oracle.jdbc.OracleDriver
+                username: USR_EXPCONS
+                password: usr_expcons_02$
+
+path-file: 
+          vcUsuario: consulta2
+          vcClave: consulta2
+          vcRutacmis: http://10.35.0.12:8080/alfresco/service/api/cmis
+          vcLinkDescarga: https://servicio.indecopi.gob.pe/buscadorResoluciones/getDoc?docID=
+          vcRutaLogo: /apps/dsd/busquedas_gratuitas/logos_redimensionados/

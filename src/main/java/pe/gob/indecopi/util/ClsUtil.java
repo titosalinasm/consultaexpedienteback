@@ -41,10 +41,10 @@ public class ClsUtil implements Serializable{
 	 */
 	private static final long serialVersionUID = 7850368188088895287L;
 
-	public static File doDescargarDocumento(URL vcUrlOrigen, String strNombreDocumento)
+	public static File doDescargarDocumento(URL pUrlOrigen, String pNombreDocumento)
 			throws IOException {
 		String strResponse = "";
-		URLConnection connection = vcUrlOrigen.openConnection();
+		URLConnection connection = pUrlOrigen.openConnection();
 
 		connection.setUseCaches(false);
 		InputStream in = connection.getInputStream();
@@ -69,7 +69,7 @@ public class ClsUtil implements Serializable{
 		tmpOut.close();
 
 		byte[] array = tmpOut.toByteArray();
-		File fileTmp = File.createTempFile(strNombreDocumento, ".pdf");
+		File fileTmp = File.createTempFile(pNombreDocumento, ".pdf");
 		FileOutputStream fos = new FileOutputStream(fileTmp);
 		fos.write(array);
 		fos.close();

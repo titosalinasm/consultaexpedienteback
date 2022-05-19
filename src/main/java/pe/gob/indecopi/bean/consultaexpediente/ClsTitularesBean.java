@@ -9,6 +9,8 @@ public class ClsTitularesBean implements Serializable{
 	 */
 	private static final long serialVersionUID = -133789313866014798L;
 	
+	private String vcIdPersona;
+	private String vcIdRepresentado;
 	private String vcTipoPersona;
 	private String vcPersona;
 	private String vcTipoDocumento;
@@ -16,6 +18,19 @@ public class ClsTitularesBean implements Serializable{
 	private String vcDomicilioProcesal;
 	private String vcDomicilioPersonal;
 	
+	
+	public String getVcIdPersona() {
+		return vcIdPersona;
+	}
+	public void setVcIdPersona(String vcIdPersona) {
+		this.vcIdPersona = vcIdPersona;
+	}
+	public String getVcIdRepresentado() {
+		return vcIdRepresentado;
+	}
+	public void setVcIdRepresentado(String vcIdRepresentado) {
+		this.vcIdRepresentado = vcIdRepresentado;
+	}
 	public String getVcTipoPersona() {
 		return vcTipoPersona;
 	}
